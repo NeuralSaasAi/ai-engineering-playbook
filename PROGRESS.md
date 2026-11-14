@@ -35,7 +35,9 @@ Where the playbook stands. Updated as work lands. Last update: **2026-11-14**.
 - Built with MkDocs Material from the repo root (`mkdocs.yml`, `site_hooks.py`, `overrides/`, `assets/`). The notes are unchanged.
 - Navigation is generated from each module README's table, so adding a note to a module README adds it to the site.
 - Links to code and data files point to GitHub automatically.
-- SEO: canonical URLs, `sitemap.xml`, `robots.txt`, Open Graph and Twitter cards with `assets/social-card.png`.
+- Logo: `assets/logo.svg` (icon), `assets/logo-wordmark.svg` and `assets/logo-wordmark-dark.svg`, PNG icons for browsers and phones.
+- SEO: descriptive page titles, meta descriptions from each note's first section, canonical URLs, `sitemap.xml` with each note's review date, `robots.txt`, Open Graph and Twitter cards, schema.org structured data (Course on the home page; TechArticle/LearningResource and breadcrumbs on notes), web app manifest, and `llms.txt` for AI assistants.
+- GitHub discoverability: keyword-rich description, 20 topics, homepage link, `CITATION.cff` ("Cite this repository").
 - The site URL comes from the `SITE_URL` repository variable, so the custom-domain move is a config change.
 - Preview locally: `make site-serve`.
 - Watch item: MkDocs 1.x is no longer actively maintained, and the Material team points to its successor (Zensical). The build is pinned and works today. Re-evaluate in 2027.
@@ -45,6 +47,7 @@ Where the playbook stands. Updated as work lands. Last update: **2026-11-14**.
 | Item | Command |
 |---|---|
 | Upload the GitHub social preview (Settings > General > Social preview) | Use `assets/social-card.png` |
+| Register the site in Google Search Console and submit the sitemap | Add the HTML-tag token as repo variable `GOOGLE_SITE_VERIFICATION`, re-run the Website workflow, then submit `sitemap.xml` |
 | Fewer permission prompts in Kiro | `mkdir -p ~/.kiro/settings && cp .local/kiro-permissions.yaml ~/.kiro/settings/permissions.yaml` |
 
 ## Known limits and follow-ups
