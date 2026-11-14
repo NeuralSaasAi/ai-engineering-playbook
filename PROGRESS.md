@@ -8,7 +8,7 @@ Where the playbook stands. Updated as work lands. Last update: **2026-11-14**.
 
 | # | Task | Status | Notes |
 |---|---|---|---|
-| 1 | Scaffold, licenses, CI, note checker | ✅ | `scripts/check_notes.py` (16 unit tests) and runnable-snippet tests (9 snippets) |
+| 1 | Scaffold, licenses, CI, note checker | ✅ | `scripts/check_notes.py` (16 unit tests) and runnable-snippet tests (8 snippets) |
 | 2 | Note template, style guide, glossary | ✅ | 70 glossary terms |
 | 3 | [00 · Foundations](00-foundations/README.md) | ✅ | 6 notes |
 | 4 | [01 · Coding agents](01-coding-agents/README.md) + [P1](projects/p1-agent-built-cli/README.md) | ✅ | 8 notes; P1: 20 tests |
