@@ -1,9 +1,9 @@
-.PHONY: check notes lint-md test-scripts test-projects links
+.PHONY: check notes lint-md test-scripts test-projects links site site-serve
 
 PROJECTS := $(wildcard projects/p*/)
 
 ## check: run every offline check (what CI runs, minus the external link check)
-check: notes lint-md test-scripts test-projects
+check: notes lint-md test-scripts test-projects site
 
 ## notes: template, front matter, relative links, glossary, GFM-only syntax
 notes:
@@ -27,3 +27,13 @@ test-projects:
 ## links: check every link, including external ones (needs network)
 links:
 	lychee --config lychee.toml "./**/*.md"
+
+SITE_ENV := NO_MKDOCS_2_WARNING=1 DISABLE_MKDOCS_2_WARNING=true
+
+## site: build the website from the same markdown (strict: fails on broken links)
+site:
+	$(SITE_ENV) uv run --python 3.12 --with-requirements requirements-site.txt mkdocs build --strict
+
+## site-serve: preview the website at http://127.0.0.1:8000 with live reload
+site-serve:
+	$(SITE_ENV) uv run --python 3.12 --with-requirements requirements-site.txt mkdocs serve

@@ -26,7 +26,10 @@ You need Python 3.12+, [uv](https://docs.astral.sh/uv/), and Node.js (for the ma
 ```bash
 make check   # note format, glossary, relative links, markdown lint, all project tests
 make links   # external link check (needs lychee: brew install lychee)
+make site-serve  # preview the website at http://127.0.0.1:8000
 ```
+
+The website is built from the same markdown files, so anything that renders correctly on GitHub and passes `make check` will look right on the site. Only use the formatting listed in [STYLE.md](STYLE.md#formatting-one-source-for-github-and-the-website).
 
 Run one project's tests:
 

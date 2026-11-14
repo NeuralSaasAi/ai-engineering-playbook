@@ -1,0 +1,41 @@
+{% extends "main.html" %}
+
+{#- Home page only: a hero and module cards generated from the navigation, then the README itself.
+    Nothing here is needed on GitHub; the README stays plain markdown. -#}
+
+{% block tabs %}
+  {{ super() }}
+  <section class="pb-hero">
+    <div class="md-grid md-typeset">
+      <p class="pb-eyebrow">Free · Open source · Updated for 2027</p>
+      <h1 class="pb-title">Learn to build AI systems that are <span>safe, secure and reliable</span>.</h1>
+      <p class="pb-lead">
+        A beginner-to-intermediate playbook: coding agents, building agents, guardrails,
+        LLM security, evals, memory, production and system design. Short notes you can understand,
+        and five projects you can run without an API key.
+      </p>
+      <p class="pb-actions">
+        <a href="START-HERE/" class="md-button md-button--primary">Start here</a>
+        <a href="00-foundations/" class="md-button">Browse modules</a>
+        <a href="{{ config.repo_url }}" class="md-button">View on GitHub</a>
+      </p>
+    </div>
+  </section>
+{% endblock %}
+
+{% block content %}
+  <div class="pb-cards">
+    {%- set modules = (nav | selectattr("title", "equalto", "Modules") | first).children %}
+    {%- for item in modules %}
+      {%- set first = item.children[0] %}
+      <a class="pb-card" href="{{ first.url | url }}">
+        <span class="pb-card-num">{{ item.title[:2] }}</span>
+        <span class="pb-card-title">{{ item.title[5:] if item.title[3:5] == "· " else item.title[3:] }}</span>
+        <span class="pb-card-meta">{{ item.children | length - 1 }} notes</span>
+      </a>
+    {%- endfor %}
+  </div>
+  <div class="pb-home">
+    {{ super() }}
+  </div>
+{% endblock %}

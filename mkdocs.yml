@@ -1,0 +1,124 @@
+# Website config. The site is built from the same markdown you read on GitHub.
+# Build locally:  uv run --with-requirements requirements-site.txt mkdocs serve
+# The site URL is set by the SITE_URL environment variable (a CI variable), so moving to a custom
+# domain is a one-line change. See PROGRESS.md, task 16.
+
+site_name: AI Engineering Playbook
+site_description: >-
+  A free, beginner-to-intermediate playbook for AI engineering in 2027: coding agents, agents,
+  AI safety, LLM security, evals, memory, production and system design, with hands-on projects.
+site_author: NeuralSaas AI
+site_url: !ENV [SITE_URL, "https://neuralsaasai.github.io/ai-engineering-playbook/"]
+repo_url: https://github.com/NeuralSaasAi/ai-engineering-playbook
+repo_name: NeuralSaasAi/ai-engineering-playbook
+edit_uri: edit/main/
+copyright: An open-education initiative by <a href="https://neuralsaasai.com">NeuralSaas AI</a>. Free forever. Content CC BY-SA 4.0, code MIT.
+
+# Build from the repository root, so README.md is the home page and each folder's README.md is its index.
+docs_dir: .
+site_dir: site
+exclude_docs: |
+  /.*
+  /site/
+  /scripts/
+  /templates/
+  /overrides/
+  /site_hooks.py
+  __pycache__/
+  /requirements-site.txt
+  /mkdocs.yml
+  /Makefile
+  /lychee.toml
+  /LICENSE
+  /projects/**/src/
+  /projects/**/tests/
+  /projects/**/data/
+  /projects/**/.agents/
+  /projects/**/.venv/
+  /projects/**/*.toml
+  /projects/**/*.lock
+  /projects/**/*.yml
+  /projects/**/Dockerfile
+  /projects/LICENSE
+  /projects/.dockerignore
+
+validation:
+  omitted_files: warn
+  absolute_links: warn
+  unrecognized_links: warn
+  anchors: warn
+
+theme:
+  name: material
+  custom_dir: overrides
+  logo: assets/logo.svg
+  favicon: assets/logo.svg
+  language: en
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
+  font:
+    text: Inter
+    code: JetBrains Mono
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.indexes
+    - navigation.top
+    - navigation.footer
+    - navigation.instant
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+    - content.action.edit
+    - toc.follow
+
+extra_css:
+  - assets/stylesheets/extra.css
+
+plugins:
+  - same-dir
+  - search
+  - gh-admonitions
+
+hooks:
+  - site_hooks.py
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+  - pymdownx.details
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+
+extra:
+  social_image: assets/social-card.png
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/NeuralSaasAi/ai-engineering-playbook
+    - icon: material/web
+      link: https://neuralsaasai.com

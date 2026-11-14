@@ -1,0 +1,178 @@
+/* NeuralSaas AI brand: periwinkle #5B6CFF, lime #D7F657, near-black #080A09 */
+
+:root {
+  --pb-blue: #5b6cff;
+  --pb-blue-light: #8b7fff;
+  --pb-lime: #d7f657;
+  --pb-ink: #080a09;
+}
+
+[data-md-color-scheme="default"] {
+  --md-primary-fg-color: #4553e6;
+  --md-primary-fg-color--light: #6b86ff;
+  --md-primary-fg-color--dark: #2f3bb8;
+  --md-accent-fg-color: #4553e6;
+  --md-typeset-a-color: #3f4cd6;
+}
+
+[data-md-color-scheme="slate"] {
+  --md-hue: 140;
+  --md-default-bg-color: #0d100e;
+  --md-default-bg-color--light: #141a12;
+  --md-primary-fg-color: #10130f;
+  --md-primary-bg-color: #f4f6f2;
+  --md-accent-fg-color: var(--pb-lime);
+  --md-typeset-a-color: #a9b6ff;
+}
+
+.md-header,
+.md-tabs {
+  background: linear-gradient(90deg, #10130f, #1a1d2e);
+  color: #f4f6f2;
+}
+
+.md-header__button.md-logo img {
+  height: 1.6rem;
+}
+
+/* Level badge and review date under each note title (added by site_hooks.py) */
+.note-meta {
+  margin-top: -0.6rem;
+  font-size: 0.72rem;
+  color: var(--md-default-fg-color--light);
+}
+
+.note-meta .level {
+  display: inline-block;
+  padding: 0.05rem 0.5rem;
+  border-radius: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.level-beginner {
+  background: #e6f9b8;
+  color: #2d3a00;
+}
+
+.level-intermediate {
+  background: #dfe3ff;
+  color: #1f2a8a;
+}
+
+/* Home hero */
+.pb-hero {
+  background:
+    radial-gradient(60rem 20rem at 85% -10%, rgba(91, 108, 255, 0.45), transparent 60%),
+    radial-gradient(30rem 14rem at 5% 110%, rgba(215, 246, 87, 0.18), transparent 60%),
+    var(--pb-ink);
+  color: #f4f6f2;
+  padding: 3.2rem 0 2.6rem;
+}
+
+.pb-hero .md-typeset {
+  padding: 0 0.8rem;
+}
+
+.pb-eyebrow {
+  color: var(--pb-lime);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.pb-hero .pb-title {
+  color: #fff;
+  font-size: 2.2rem;
+  font-weight: 700;
+  line-height: 1.15;
+  max-width: 34rem;
+  margin: 0.6rem 0 0.8rem;
+}
+
+.pb-title span {
+  background: linear-gradient(90deg, #a9b6ff, var(--pb-lime));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.pb-lead {
+  max-width: 38rem;
+  font-size: 0.95rem;
+  color: #c9cec6;
+}
+
+.pb-actions .md-button {
+  color: #f4f6f2;
+  border-color: rgba(244, 246, 242, 0.4);
+  margin: 0.3rem 0.4rem 0 0;
+}
+
+.pb-actions .md-button--primary {
+  background: var(--pb-lime);
+  border-color: var(--pb-lime);
+  color: var(--pb-ink);
+}
+
+.pb-actions .md-button:hover {
+  background: var(--pb-blue);
+  border-color: var(--pb-blue);
+  color: #fff;
+}
+
+/* Module cards */
+.pb-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(11rem, 1fr));
+  gap: 0.8rem;
+  margin: 0.4rem 0 2rem;
+}
+
+.pb-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  padding: 0.9rem 1rem;
+  border: 1px solid var(--md-default-fg-color--lightest);
+  border-radius: 0.6rem;
+  color: var(--md-default-fg-color);
+  transition: transform 0.15s, border-color 0.15s, box-shadow 0.15s;
+}
+
+.pb-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--pb-blue);
+  box-shadow: 0 6px 18px rgba(91, 108, 255, 0.18);
+}
+
+.pb-card-num {
+  font-family: var(--md-code-font-family);
+  font-size: 0.7rem;
+  color: var(--pb-blue);
+  font-weight: 700;
+}
+
+.pb-card-title {
+  font-weight: 650;
+  font-size: 0.85rem;
+  line-height: 1.3;
+}
+
+.pb-card-meta {
+  font-size: 0.7rem;
+  color: var(--md-default-fg-color--light);
+}
+
+/* The README's own title is replaced by the hero on the home page */
+.pb-home > h1:first-of-type {
+  display: none;
+}
+
+@media screen and (max-width: 44.9375em) {
+  .pb-hero .pb-title {
+    font-size: 1.6rem;
+  }
+}

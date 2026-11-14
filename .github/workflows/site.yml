@@ -1,0 +1,53 @@
+name: Website
+
+# Builds the site from the same markdown on every push and pull request (a strict build fails on
+# broken links or bad config). Deploys to GitHub Pages from main only when the repo is public,
+# because the GitHub Free plan only serves Pages for public repos.
+#
+# Site URL: set the repository variable SITE_URL (Settings > Secrets and variables > Actions >
+# Variables) when moving to a custom domain. Default: https://neuralsaasai.github.io/ai-engineering-playbook/
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pages-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      SITE_URL: ${{ vars.SITE_URL }}
+      NO_MKDOCS_2_WARNING: "1"
+      DISABLE_MKDOCS_2_WARNING: "true"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+      - name: Build site (strict)
+        run: uv run --python 3.12 --with-requirements requirements-site.txt mkdocs build --strict
+      - name: Upload Pages artifact
+        if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main' && !github.event.repository.private
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+  deploy:
+    needs: build
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main' && !github.event.repository.private
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

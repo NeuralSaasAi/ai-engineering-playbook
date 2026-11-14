@@ -13,7 +13,7 @@ Where the playbook stands. Updated as work lands. Last update: **2026-11-14**.
 | 3 | [00 · Foundations](00-foundations/README.md) | ✅ | 6 notes |
 | 4 | [01 · Coding agents](01-coding-agents/README.md) + [P1](projects/p1-agent-built-cli/README.md) | ✅ | 8 notes; P1: 20 tests |
 | 5 | [02 · Building agents](02-building-agents/README.md) | ✅ | 6 notes |
-| 6 | [04 · LLM security](04-llm-security/README.md) + [P2](projects/p2-secure-rag/README.md) | ✅ | 14 notes (OWASP LLM 2026, agentic, incidents, frameworks); P2: 26 tests + 5 expected failures |
+| 6 | [04 · LLM security](04-llm-security/README.md) + [P2](projects/p2-secure-rag/README.md) | ✅ | 13 notes (OWASP LLM 2026, agentic, incidents, frameworks); P2: 26 tests + 5 expected failures |
 | 7 | [03 · AI safety and guardrails](03-ai-safety-guardrails/README.md) | ✅ | 5 notes + defense-layers map |
 | 8 | [05 · Evaluation](05-evaluation/README.md), [06 · Memory](06-agent-memory/README.md) + [P3](projects/p3-langgraph-research-agent/README.md) | ✅ | 8 notes; P3: 11 tests, eval 6/6 |
 | 9 | [P4 · Guardrailed support agent](projects/p4-guardrailed-support-agent/README.md) | ✅ | 33 tests, eval 12/12 |
@@ -25,15 +25,26 @@ Where the playbook stands. Updated as work lands. Last update: **2026-11-14**.
 
 | # | Task | Status |
 |---|---|---|
-| 13 | MkDocs Material site built from the same markdown | ⬜ |
-| 14 | Visual polish (brand colors, logo, home page cards) | ⬜ |
-| 15 | Make public and deploy GitHub Pages (needs your yes) | ⬜ |
+| 13 | MkDocs Material site built from the same markdown | ✅ |
+| 14 | Visual polish (brand colors, logo, home page cards) | ✅ |
+| 15 | Make public and deploy GitHub Pages (needs your yes) | 🟡 Deploy workflow ready; waiting for your yes to make the repo public |
 | 16 | Move to a NeuralSaas AI domain (needs your yes and a DNS change) | ⬜ |
+
+## Website details
+
+- Built with MkDocs Material from the repo root (`mkdocs.yml`, `site_hooks.py`, `overrides/`, `assets/`). The notes are unchanged.
+- Navigation is generated from each module README's table, so adding a note to a module README adds it to the site.
+- Links to code and data files point to GitHub automatically.
+- SEO: canonical URLs, `sitemap.xml`, `robots.txt`, Open Graph and Twitter cards with `assets/social-card.png`.
+- The site URL comes from the `SITE_URL` repository variable, so the custom-domain move is a config change.
+- Preview locally: `make site-serve`.
+- Watch item: MkDocs 1.x is no longer actively maintained, and the Material team points to its successor (Zensical). The build is pinned and works today. Re-evaluate in 2027.
 
 ## Optional for you
 
 | Item | Command |
 |---|---|
+| Upload the GitHub social preview (Settings > General > Social preview) | Use `assets/social-card.png` |
 | Fewer permission prompts in Kiro | `mkdir -p ~/.kiro/settings && cp .local/kiro-permissions.yaml ~/.kiro/settings/permissions.yaml` |
 
 ## Known limits and follow-ups
