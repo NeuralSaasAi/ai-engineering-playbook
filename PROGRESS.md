@@ -4,29 +4,22 @@ Where the playbook stands. Updated as work lands. Last update: **2026-11-14**.
 
 **Legend:** ✅ done · 🟡 in progress · ⬜ not started
 
-## Phase 1: content
+## Phase 1: content ✅
 
 | # | Task | Status | Notes |
 |---|---|---|---|
-| 1 | Scaffold, licenses, CI, note checker | ✅ | `scripts/check_notes.py` with 16 unit tests; runnable-snippet tests |
-| 2 | Note template, style guide | ✅ | Glossary file still to write (task 11) |
+| 1 | Scaffold, licenses, CI, note checker | ✅ | `scripts/check_notes.py` (16 unit tests) and runnable-snippet tests (9 snippets) |
+| 2 | Note template, style guide, glossary | ✅ | 70 glossary terms |
 | 3 | [00 · Foundations](00-foundations/README.md) | ✅ | 6 notes |
 | 4 | [01 · Coding agents](01-coding-agents/README.md) + [P1](projects/p1-agent-built-cli/README.md) | ✅ | 8 notes; P1: 20 tests |
-| 5 | [02 · Building agents](02-building-agents/README.md) | ✅ | 6 notes, LangGraph snippets tested |
+| 5 | [02 · Building agents](02-building-agents/README.md) | ✅ | 6 notes |
 | 6 | [04 · LLM security](04-llm-security/README.md) + [P2](projects/p2-secure-rag/README.md) | ✅ | 14 notes (OWASP LLM 2026, agentic, incidents, frameworks); P2: 26 tests + 5 expected failures |
 | 7 | [03 · AI safety and guardrails](03-ai-safety-guardrails/README.md) | ✅ | 5 notes + defense-layers map |
 | 8 | [05 · Evaluation](05-evaluation/README.md), [06 · Memory](06-agent-memory/README.md) + [P3](projects/p3-langgraph-research-agent/README.md) | ✅ | 8 notes; P3: 11 tests, eval 6/6 |
 | 9 | [P4 · Guardrailed support agent](projects/p4-guardrailed-support-agent/README.md) | ✅ | 33 tests, eval 12/12 |
-| 10 | 07 · Agent ops, 08 · System design + P5 capstone | 🟡 | P5 code and 5 tests done; README, threat model, design doc, Docker run and both modules to write |
-| 11 | 09 · Careers, glossary, README, START-HERE, ABOUT | ⬜ | |
-| 12 | Full `make check` green, then your review of the private repo | ⬜ | CI currently fails on links to pages not yet written; resolves with tasks 10 and 11 |
-
-## Waiting on you
-
-| Item | Why | One-time command |
-|---|---|---|
-| CI workflow not pushed yet | Your GitHub CLI token lacks the `workflow` scope, so GitHub refused `.github/workflows/checks.yml` (it's kept locally) | `gh auth refresh -h github.com -s workflow` |
-| Fewer permission prompts | Kiro doesn't let the agent write its own permission file | `mkdir -p ~/.kiro/settings && cp .local/kiro-permissions.yaml ~/.kiro/settings/permissions.yaml` |
+| 10 | [07 · Agent ops](07-agent-ops-production/README.md), [08 · System design](08-ai-system-design/README.md) + [P5](projects/p5-production-capstone/README.md) | ✅ | 10 notes incl. 3 case studies; P5: 5 tests, Docker + Jaeger verified, design doc, threat model |
+| 11 | [09 · Careers](09-careers-2027/README.md), [glossary](glossary.md), [README](README.md), [START-HERE](START-HERE.md), [ABOUT](ABOUT.md) | ✅ | 4 career notes |
+| 12 | All checks green; your review of the private repo | 🟡 | 60 notes pass the checker; 0 markdown lint issues; 304 unique links OK; all project tests pass in CI. **Waiting for your review** |
 
 ## Phase 2: website and polish
 
@@ -36,6 +29,18 @@ Where the playbook stands. Updated as work lands. Last update: **2026-11-14**.
 | 14 | Visual polish (brand colors, logo, home page cards) | ⬜ |
 | 15 | Make public and deploy GitHub Pages (needs your yes) | ⬜ |
 | 16 | Move to a NeuralSaas AI domain (needs your yes and a DNS change) | ⬜ |
+
+## Optional for you
+
+| Item | Command |
+|---|---|
+| Fewer permission prompts in Kiro | `mkdir -p ~/.kiro/settings && cp .local/kiro-permissions.yaml ~/.kiro/settings/permissions.yaml` |
+
+## Known limits and follow-ups
+
+- Projects use deliberately simple, regex-based guardrails and fake models so they run offline. Each README suggests swapping in real libraries and models as an exercise.
+- P5's rate limiter keeps counters in memory, so the container runs one worker. Verified: with two workers each process counted separately and no requests were limited.
+- Prices and plan names in [the tool comparison](01-coding-agents/tool-comparison.md) are as of 14 Nov 2026 and need a monthly re-check.
 
 ## Decisions log
 

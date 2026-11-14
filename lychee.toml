@@ -8,8 +8,7 @@ max_concurrency = 8
 user_agent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Safari/537.36"
 # 403 and 429 usually mean bot protection or rate limiting, not a dead link
 accept = ["200..=299", "403", "429"]
-# Check #anchors in links between our own markdown files
-include_fragments = true
+# Anchors in links between our own files are checked by scripts/check_notes.py
 exclude_path = [
   "node_modules",
   ".git",
