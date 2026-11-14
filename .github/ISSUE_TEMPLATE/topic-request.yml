@@ -1,0 +1,21 @@
+name: Suggest a topic
+description: A concept, tool or skill you think the playbook should explain.
+title: "[Topic] "
+labels: ["topic-request"]
+body:
+  - type: input
+    id: topic
+    attributes:
+      label: Topic
+    validations:
+      required: true
+  - type: textarea
+    id: why
+    attributes:
+      label: Why does it matter for AI engineers in 2027?
+    validations:
+      required: true
+  - type: textarea
+    id: sources
+    attributes:
+      label: Good beginner-friendly sources, if you know any

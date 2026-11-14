@@ -1,0 +1,29 @@
+[project]
+name = "research-agent"
+version = "0.1.0"
+description = "P3: a LangGraph multi-step research agent with tools, checkpoints, human approval, long-term memory and evals"
+readme = "README.md"
+requires-python = ">=3.12"
+license = "MIT"
+dependencies = ["langgraph==1.2.22", "litellm==1.109.1"]
+
+[project.scripts]
+research-agent = "research_agent.cli:main"
+
+[dependency-groups]
+dev = ["pytest==9.2.0", "ruff==0.17.5"]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.ruff]
+line-length = 110
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "S"]
+ignore = ["S101"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

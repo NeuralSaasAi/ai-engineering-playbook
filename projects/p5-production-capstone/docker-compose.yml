@@ -1,0 +1,23 @@
+# Run the agent with Jaeger so you can see traces in a browser.
+#   cd projects/p5-production-capstone && docker compose up --build
+#   app:    http://localhost:8000/docs
+#   traces: http://localhost:16686   (service: support-agent)
+services:
+  app:
+    build:
+      context: ..
+      dockerfile: p5-production-capstone/Dockerfile
+    ports: ["8000:8000"]
+    environment:
+      OTEL_EXPORTER_OTLP_ENDPOINT: http://jaeger:4318
+      # LIVE: "1"                 # uncomment to use a real model
+      # GEMINI_API_KEY: ${GEMINI_API_KEY}
+    depends_on: [jaeger]
+    read_only: true
+    tmpfs: [/tmp]
+
+  jaeger:
+    image: jaegertracing/jaeger:2.23.0
+    ports:
+      - "16686:16686"   # UI
+      - "4318:4318"     # OTLP over HTTP

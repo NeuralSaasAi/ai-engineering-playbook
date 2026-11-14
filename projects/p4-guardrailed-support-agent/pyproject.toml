@@ -1,0 +1,29 @@
+[project]
+name = "support-agent"
+version = "0.1.0"
+description = "P4: a customer-support agent with input, output and action guardrails, PII redaction, rate limits, budgets and LLM-as-judge evals"
+readme = "README.md"
+requires-python = ">=3.12"
+license = "MIT"
+dependencies = ["litellm==1.109.1", "fastapi==0.162.7", "uvicorn==0.54.0"]
+
+[project.scripts]
+support-agent = "support_agent.cli:main"
+
+[dependency-groups]
+dev = ["pytest==9.2.0", "ruff==0.17.5", "httpx==0.28.1"]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.ruff]
+line-length = 110
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "S"]
+ignore = ["S101"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

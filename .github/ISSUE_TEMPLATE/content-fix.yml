@@ -1,0 +1,30 @@
+name: Something is wrong or unclear
+description: A fact is out of date, an explanation is confusing, or an example doesn't work.
+title: "[Fix] "
+labels: ["content"]
+body:
+  - type: input
+    id: page
+    attributes:
+      label: Which page?
+      placeholder: e.g. 02-building-agents/tool-calling.md
+    validations:
+      required: true
+  - type: dropdown
+    id: kind
+    attributes:
+      label: What kind of problem?
+      options:
+        - A fact is wrong or out of date
+        - The explanation is hard to follow
+        - A code example or project doesn't run
+        - Something important is missing
+    validations:
+      required: true
+  - type: textarea
+    id: details
+    attributes:
+      label: Details
+      description: What did you expect, and what did you find? Link a source if you're correcting a fact.
+    validations:
+      required: true
