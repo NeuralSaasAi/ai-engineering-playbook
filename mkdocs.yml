@@ -5,8 +5,9 @@
 
 site_name: AI Engineering Playbook
 site_description: >-
-  A free, beginner-to-intermediate playbook for AI engineering in 2027: coding agents, agents,
-  AI safety, LLM security, evals, memory, production and system design, with hands-on projects.
+  Free, open-source AI engineering guide for 2027. Learn coding agents, AI agents with LangGraph,
+  guardrails, LLM security (OWASP LLM Top 10), evals, agent memory, production and AI system design,
+  with five hands-on projects. Beginner to intermediate.
 site_author: NeuralSaas AI
 site_url: !ENV [SITE_URL, "https://neuralsaasai.github.io/ai-engineering-playbook/"]
 repo_url: https://github.com/NeuralSaasAi/ai-engineering-playbook
@@ -117,6 +118,8 @@ markdown_extensions:
 
 extra:
   social_image: assets/social-card.png
+  # Set GOOGLE_SITE_VERIFICATION (a CI variable) to the token from Google Search Console
+  google_site_verification: !ENV [GOOGLE_SITE_VERIFICATION, ""]
   social:
     - icon: fontawesome/brands/github
       link: https://github.com/NeuralSaasAi/ai-engineering-playbook

@@ -25,6 +25,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       SITE_URL: ${{ vars.SITE_URL || 'https://neuralsaasai.github.io/ai-engineering-playbook/' }}
+      GOOGLE_SITE_VERIFICATION: ${{ vars.GOOGLE_SITE_VERIFICATION }}
       NO_MKDOCS_2_WARNING: "1"
       DISABLE_MKDOCS_2_WARNING: "true"
     steps:

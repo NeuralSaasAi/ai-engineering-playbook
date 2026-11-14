@@ -7,7 +7,8 @@ Nothing in the notes needs to change for the site. This file:
 3. Lets markdown inside <details> render on the site, as it does on GitHub.
 4. Adds a level / last-reviewed line under each note's title, from its front matter.
 5. Uses the home template for the root README.
-6. Writes robots.txt pointing at the sitemap.
+6. Uses each note's last_reviewed date as its sitemap <lastmod>.
+7. Writes robots.txt, a web app manifest, and llms.txt (a plain index for AI assistants and search).
 """
 
 from __future__ import annotations
@@ -117,6 +118,12 @@ def on_page_markdown(markdown, page, config, files, **kwargs):
             "LLM security, evals, memory, production and system design, with hands-on projects.",
         )
 
+    # Pages without a front-matter title (READMEs, project docs) use their own H1 for <title>,
+    # not the short sidebar label such as "Overview".
+    if not page.meta.get("title") and src != "README.md":
+        if h1 := H1.search(markdown):
+            page.meta["title"] = re.sub(r"[*`]", "", h1.group(1)).strip()
+
     markdown = _rewrite_links(markdown, src, docs_dir, files)
     markdown = re.sub(r"<details>", '<details markdown="1">', markdown)
 
@@ -124,6 +131,7 @@ def on_page_markdown(markdown, page, config, files, **kwargs):
     if level and reviewed:
         if isinstance(reviewed, str):
             reviewed = dt.date.fromisoformat(reviewed)
+        page.update_date = reviewed.isoformat()  # sitemap <lastmod>
         badge = (
             f'<p class="note-meta"><span class="level level-{level}">{str(level).title()}</span>'
             f" · Last reviewed {reviewed:%-d %B %Y}</p>"
@@ -139,9 +147,51 @@ def _first_sentence(markdown: str) -> str:
     return text[:200]
 
 
+_NAV = {}  # the site navigation, kept for llms.txt
+
+
+def on_nav(nav, config, files, **kwargs):
+    _NAV["nav"] = nav
+    return nav
+
+
 def on_post_build(config, **kwargs):
+    import json
+
+    site_dir = Path(config["site_dir"])
     site_url = (config.get("site_url") or "").rstrip("/")
     robots = "User-agent: *\nAllow: /\n"
     if site_url:
         robots += f"Sitemap: {site_url}/sitemap.xml\n"
-    (Path(config["site_dir"]) / "robots.txt").write_text(robots, encoding="utf-8")
+    (site_dir / "robots.txt").write_text(robots, encoding="utf-8")
+
+    manifest = {
+        "name": config["site_name"],
+        "short_name": "AI Playbook",
+        "description": config["site_description"],
+        "start_url": "./",
+        "display": "standalone",
+        "background_color": "#080A09",
+        "theme_color": "#080A09",
+        "icons": [
+            {"src": "assets/icon-192.png", "sizes": "192x192", "type": "image/png"},
+            {"src": "assets/icon-512.png", "sizes": "512x512", "type": "image/png"},
+        ],
+    }
+    (site_dir / "manifest.webmanifest").write_text(json.dumps(manifest, indent=2), encoding="utf-8")
+
+    lines = [f"# {config['site_name']}", "", f"> {config['site_description'].strip()}", ""]
+    lines += [
+        "Free, open learning resource by NeuralSaas AI. Content CC BY-SA 4.0, code MIT.",
+        f"Source: {REPO}",
+        "",
+    ]
+    current = None
+    for page in _NAV["nav"].pages:  # navigation order
+        section = page.parent.title if page.parent else ("Start" if page.is_homepage or page.title == "Start here" else "Reference")
+        if section != current:
+            lines += ["", f"## {section}", ""]
+            current = section
+        name = page.meta.get("title") or page.title
+        lines.append(f"- [{name}]({page.canonical_url})")
+    (site_dir / "llms.txt").write_text("\n".join(lines).strip() + "\n", encoding="utf-8")

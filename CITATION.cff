@@ -1,0 +1,27 @@
+cff-version: 1.2.0
+message: "If you use or adapt this playbook, please cite it as below."
+type: software
+title: "AI Engineering Playbook"
+abstract: >-
+  A free, open-source, beginner-to-intermediate guide to AI engineering in 2027: coding agents,
+  AI agents with LangGraph, guardrails, LLM security (OWASP LLM Top 10), evaluation, agent memory,
+  production operations and AI system design, with five hands-on projects.
+authors:
+  - name: "NeuralSaas AI"
+    website: "https://neuralsaasai.com"
+  - given-names: "Anuj"
+    family-names: "Jindal"
+    alias: "jindalAnuj"
+repository-code: "https://github.com/NeuralSaasAi/ai-engineering-playbook"
+url: "https://neuralsaasai.github.io/ai-engineering-playbook/"
+license: CC-BY-SA-4.0
+keywords:
+  - AI engineering
+  - AI agents
+  - LLM security
+  - AI safety
+  - OWASP LLM Top 10
+  - LangGraph
+  - LLM evaluation
+  - coding agents
+date-released: "2026-11-14"

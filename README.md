@@ -1,6 +1,22 @@
+<!-- markdownlint-disable-file MD041 -->
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="assets/logo-wordmark-dark.svg">
+    <img src="assets/logo-wordmark.svg" alt="AI Engineering Playbook logo" width="420">
+  </picture>
+</p>
+
+<p align="center">
+  <a href="https://neuralsaasai.github.io/ai-engineering-playbook/"><strong>Read the website</strong></a> ·
+  <a href="START-HERE.md">Start here</a> ·
+  <a href="#modules">Modules</a> ·
+  <a href="#projects">Projects</a> ·
+  <a href="glossary.md">Glossary</a>
+</p>
+
 # AI Engineering Playbook
 
-A free, open guide to the AI engineering skills that matter in 2027, from your first API call to securing and running agents in production. Written for beginners to intermediates, with the focus on understanding: short plain-language notes, diagrams, self-checks, a few carefully chosen sources, and five hands-on projects.
+A free, open-source guide to the AI engineering skills that matter in 2027, from your first LLM API call to building AI agents and securing them in production. Written for beginners to intermediates, with the focus on understanding: short plain-language notes on coding agents, LangGraph agents, guardrails, LLM security (OWASP LLM Top 10), evals, agent memory and AI system design, with diagrams, self-checks, carefully chosen sources, and five hands-on projects.
 
 > [!TIP]
 > New here? Take the two-minute self-check in [START-HERE.md](START-HERE.md) to find your starting module.

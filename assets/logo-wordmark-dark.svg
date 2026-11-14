@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 120" role="img" aria-labelledby="t">
+  <title id="t">AI Engineering Playbook</title>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#4F5FF5"/>
+      <stop offset="1" stop-color="#8B7FFF"/>
+    </linearGradient>
+    <linearGradient id="page" x1="0" y1="34" x2="0" y2="54" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#FFFFFF"/>
+      <stop offset="1" stop-color="#E4E7FF"/>
+    </linearGradient>
+    <style>
+      .w { font-family: "Inter", "Segoe UI", Helvetica, Arial, sans-serif; }
+      .t { fill: #F4F6F2; }
+      .s { fill: #A9B6FF; }
+    </style>
+  </defs>
+  <g transform="translate(12 12) scale(1.5)">
+    <rect width="64" height="64" rx="15" fill="url(#bg)"/>
+    <path d="M32 33 L32 21 M32 21 L20 14 M32 21 L44 14" stroke="#D7F657" stroke-width="3" stroke-linecap="round" fill="none"/>
+    <circle cx="32" cy="21" r="4.6" fill="#D7F657"/>
+    <circle cx="20" cy="14" r="3.6" fill="#D7F657"/>
+    <circle cx="44" cy="14" r="3.6" fill="#D7F657"/>
+    <path d="M10 36 C17 33.5 25 34 32 38.5 L32 54 C25 49.5 17 49 10 51.5 Z" fill="url(#page)"/>
+    <path d="M54 36 C47 33.5 39 34 32 38.5 L32 54 C39 49.5 47 49 54 51.5 Z" fill="url(#page)" opacity=".88"/>
+    <path d="M32 38.5 L32 54" stroke="#4F5FF5" stroke-width="1.4" opacity=".55"/>
+  </g>
+  <text class="w t" x="128" y="62" font-size="40" font-weight="800" letter-spacing="-0.5">AI Engineering</text>
+  <text class="w s" x="129" y="98" font-size="30" font-weight="600" letter-spacing="6">PLAYBOOK</text>
+</svg>

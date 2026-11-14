@@ -1,13 +1,23 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="AI Engineering Playbook">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="t">
+  <title id="t">AI Engineering Playbook</title>
   <defs>
-    <linearGradient id="g" x1="0" y1="0" x2="32" y2="32" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#5B6CFF"/>
+    <linearGradient id="bg" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#4F5FF5"/>
       <stop offset="1" stop-color="#8B7FFF"/>
     </linearGradient>
+    <linearGradient id="page" x1="0" y1="34" x2="0" y2="54" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#FFFFFF"/>
+      <stop offset="1" stop-color="#E4E7FF"/>
+    </linearGradient>
   </defs>
-  <rect width="32" height="32" rx="7" fill="url(#g)"/>
-  <!-- an open book -->
-  <path d="M7 10.5c3-.9 6-.6 9 1.2v11.8c-3-1.8-6-2.1-9-1.2z" fill="#fff"/>
-  <path d="M25 10.5c-3-.9-6-.6-9 1.2v11.8c3-1.8 6-2.1 9-1.2z" fill="#fff" opacity=".85"/>
-  <circle cx="24" cy="8" r="2.4" fill="#D7F657"/>
+  <rect width="64" height="64" rx="15" fill="url(#bg)"/>
+  <!-- agent graph: three connected nodes rising out of the book -->
+  <path d="M32 33 L32 21 M32 21 L20 14 M32 21 L44 14" stroke="#D7F657" stroke-width="3" stroke-linecap="round" fill="none"/>
+  <circle cx="32" cy="21" r="4.6" fill="#D7F657"/>
+  <circle cx="20" cy="14" r="3.6" fill="#D7F657"/>
+  <circle cx="44" cy="14" r="3.6" fill="#D7F657"/>
+  <!-- open book -->
+  <path d="M10 36 C17 33.5 25 34 32 38.5 L32 54 C25 49.5 17 49 10 51.5 Z" fill="url(#page)"/>
+  <path d="M54 36 C47 33.5 39 34 32 38.5 L32 54 C39 49.5 47 49 54 51.5 Z" fill="url(#page)" opacity=".88"/>
+  <path d="M32 38.5 L32 54" stroke="#4F5FF5" stroke-width="1.4" opacity=".55"/>
 </svg>

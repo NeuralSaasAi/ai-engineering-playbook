@@ -1,20 +1,96 @@
 {% extends "base.html" %}
 
-{#- Open Graph and Twitter cards, so shared links show a title, description and preview image. -#}
+{#- Page titles. The home page gets a descriptive title, because the site name alone tells search
+    engines and people very little. -#}
+{% block htmltitle %}
+  {%- if page and page.is_homepage %}
+    <title>{{ config.site_name }}: free guide to AI agents, LLM security and AI safety for 2027</title>
+  {%- elif page and page.meta and page.meta.title %}
+    <title>{{ page.meta.title }} · {{ config.site_name }}</title>
+  {%- elif page and page.title %}
+    <title>{{ page.title | striptags }} · {{ config.site_name }}</title>
+  {%- else %}
+    <title>{{ config.site_name }}</title>
+  {%- endif %}
+{% endblock %}
+
 {% block extrahead %}
-  {%- set title = (page.title ~ " · " ~ config.site_name) if page and page.title and not page.is_homepage else config.site_name -%}
+  {%- set is_home = page and page.is_homepage -%}
+  {%- set title = (page.meta.title if page and page.meta and page.meta.title else (page.title | striptags if page and page.title else config.site_name)) -%}
+  {%- set title = config.site_name if is_home else title ~ " · " ~ config.site_name -%}
   {%- set description = (page.meta.description if page and page.meta and page.meta.description else config.site_description) -%}
   {%- set image = config.site_url ~ config.extra.social_image -%}
-  <meta property="og:type" content="website">
+  {%- set url = page.canonical_url if page and page.canonical_url else config.site_url -%}
+
+  {#- Icons, install metadata and browser color -#}
+  <link rel="icon" type="image/png" sizes="32x32" href="{{ 'assets/favicon-32.png' | url }}">
+  <link rel="apple-touch-icon" href="{{ 'assets/apple-touch-icon.png' | url }}">
+  <link rel="manifest" href="{{ 'manifest.webmanifest' | url }}">
+  <meta name="theme-color" content="#080A09">
+  {%- if config.extra.google_site_verification %}
+  <meta name="google-site-verification" content="{{ config.extra.google_site_verification }}">
+  {%- endif %}
+  {%- if page and page.meta and page.meta.level %}
+  <meta name="keywords" content="AI engineering, {{ page.meta.title }}, {{ page.meta.level }}, 2027">
+  {%- endif %}
+
+  {#- Open Graph and Twitter cards, so shared links show a title, description and preview image -#}
+  <meta property="og:type" content="{{ 'website' if is_home else 'article' }}">
   <meta property="og:site_name" content="{{ config.site_name }}">
+  <meta property="og:locale" content="en_US">
   <meta property="og:title" content="{{ title }}">
   <meta property="og:description" content="{{ description }}">
-  {% if page and page.canonical_url %}<meta property="og:url" content="{{ page.canonical_url }}">{% endif %}
+  <meta property="og:url" content="{{ url }}">
   <meta property="og:image" content="{{ image }}">
   <meta property="og:image:width" content="1280">
   <meta property="og:image:height" content="640">
+  <meta property="og:image:alt" content="AI Engineering Playbook: build AI systems that are safe, secure and reliable">
+  {%- if page and page.meta and page.meta.last_reviewed %}
+  <meta property="article:modified_time" content="{{ page.meta.last_reviewed }}">
+  {%- endif %}
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="{{ title }}">
   <meta name="twitter:description" content="{{ description }}">
   <meta name="twitter:image" content="{{ image }}">
+
+  {#- Structured data (schema.org), so search engines understand what each page is -#}
+  {%- set org = {"@type": "Organization", "@id": "https://neuralsaasai.com/#org", "name": "NeuralSaas AI",
+                 "url": "https://neuralsaasai.com", "logo": config.site_url ~ "assets/icon-512.png"} -%}
+  {%- set site = {"@type": "WebSite", "@id": config.site_url ~ "#website", "name": config.site_name,
+                  "url": config.site_url, "description": config.site_description, "inLanguage": "en",
+                  "publisher": {"@id": "https://neuralsaasai.com/#org"}} -%}
+  {%- if is_home %}
+    {%- set course = {"@type": "Course", "name": config.site_name, "description": config.site_description,
+                      "url": config.site_url, "provider": {"@id": "https://neuralsaasai.com/#org"},
+                      "isAccessibleForFree": true, "inLanguage": "en", "educationalLevel": "Beginner to intermediate",
+                      "teaches": ["Coding agents", "AI agents with LangGraph", "AI guardrails", "LLM security and OWASP LLM Top 10",
+                                  "LLM evaluation", "Agent memory", "AI in production", "AI system design"],
+                      "license": "https://creativecommons.org/licenses/by-sa/4.0/",
+                      "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD", "category": "Free"},
+                      "hasCourseInstance": {"@type": "CourseInstance", "courseMode": "Online", "courseWorkload": "PT90H"}} -%}
+    <script type="application/ld+json">{{ {"@context": "https://schema.org", "@graph": [org, site, course]} | tojson }}</script>
+  {%- elif page %}
+    {#- A namespace keeps values set inside the loop (plain Jinja variables don't survive it) -#}
+    {%- set ns = namespace(crumbs=[{"@type": "ListItem", "position": 1, "name": "Home", "item": config.site_url}]) -%}
+    {%- for section in page.ancestors | reverse -%}
+      {%- set first = section.children | selectattr("is_page") | first -%}
+      {%- if first and first.canonical_url and first.canonical_url != url -%}
+        {%- set ns.crumbs = ns.crumbs + [{"@type": "ListItem", "position": ns.crumbs | length + 1, "name": section.title, "item": first.canonical_url}] -%}
+      {%- endif -%}
+    {%- endfor -%}
+    {%- set ns.crumbs = ns.crumbs + [{"@type": "ListItem", "position": ns.crumbs | length + 1, "name": (page.meta.title if page.meta and page.meta.title else page.title | striptags), "item": url}] -%}
+    {%- set graph = [org, site, {"@type": "BreadcrumbList", "itemListElement": ns.crumbs}] -%}
+    {%- if page.meta and page.meta.level -%}
+      {%- set graph = graph + [{"@type": ["TechArticle", "LearningResource"], "headline": page.meta.title,
+                                 "description": description, "url": url, "image": image, "inLanguage": "en",
+                                 "dateModified": page.meta.last_reviewed | string,
+                                 "educationalLevel": page.meta.level | title, "isAccessibleForFree": true,
+                                 "learningResourceType": "Explanatory note",
+                                 "license": "https://creativecommons.org/licenses/by-sa/4.0/",
+                                 "author": {"@id": "https://neuralsaasai.com/#org"},
+                                 "publisher": {"@id": "https://neuralsaasai.com/#org"},
+                                 "isPartOf": {"@id": config.site_url ~ "#website"}}] -%}
+    {%- endif %}
+    <script type="application/ld+json">{{ {"@context": "https://schema.org", "@graph": graph} | tojson }}</script>
+  {%- endif %}
 {% endblock %}
