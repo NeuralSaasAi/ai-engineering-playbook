@@ -19,7 +19,7 @@ Where the playbook stands. Updated as work lands. Last update: **2026-11-14**.
 | 9 | [P4 · Guardrailed support agent](projects/p4-guardrailed-support-agent/README.md) | ✅ | 33 tests, eval 12/12 |
 | 10 | [07 · Agent ops](07-agent-ops-production/README.md), [08 · System design](08-ai-system-design/README.md) + [P5](projects/p5-production-capstone/README.md) | ✅ | 10 notes incl. 3 case studies; P5: 5 tests, Docker + Jaeger verified, design doc, threat model |
 | 11 | [09 · Careers](09-careers-2027/README.md), [glossary](glossary.md), [README](README.md), [START-HERE](START-HERE.md), [ABOUT](ABOUT.md) | ✅ | 4 career notes |
-| 12 | All checks green; your review of the private repo | 🟡 | 60 notes pass the checker; 0 markdown lint issues; 304 unique links OK; all project tests pass in CI. **Waiting for your review** |
+| 12 | All checks green; your review of the private repo | ✅ | 60 notes pass the checker; 0 markdown lint issues; 304 unique links OK; all project tests pass in CI. Reviewed and published |
 
 ## Phase 2: website and polish
 
@@ -27,8 +27,8 @@ Where the playbook stands. Updated as work lands. Last update: **2026-11-14**.
 |---|---|---|
 | 13 | MkDocs Material site built from the same markdown | ✅ |
 | 14 | Visual polish (brand colors, logo, home page cards) | ✅ |
-| 15 | Make public and deploy GitHub Pages (needs your yes) | 🟡 Deploy workflow ready; waiting for your yes to make the repo public |
-| 16 | Move to a NeuralSaas AI domain (needs your yes and a DNS change) | ⬜ |
+| 15 | Make public and deploy GitHub Pages | ✅ Live at <https://neuralsaasai.github.io/ai-engineering-playbook/> |
+| 16 | Move to a NeuralSaas AI domain (needs your yes and a DNS change) | ⬜ Planned for later |
 
 ## Website details
 
@@ -60,4 +60,5 @@ Where the playbook stands. Updated as work lands. Last update: **2026-11-14**.
 | 2026-11-14 | Repo name `ai-engineering-playbook`; notes + 5 full projects; no reference to source video or roadmap.sh |
 | 2026-11-14 | Default live model: Gemini free tier via LiteLLM; tests use fake models, no API keys in CI |
 | 2026-11-14 | Security notes follow the **OWASP LLM Top 10 2026** (published Aug 2026), with 2025 IDs shown alongside |
+| 2026-11-14 | Repo made public; commit history attributed to jindalAnuj (GitHub noreply email) |
 | 2026-11-14 | Domain: start on github.io, then `learn.neuralsaasai.com` or `neuralsaasai.com/playbook` |
