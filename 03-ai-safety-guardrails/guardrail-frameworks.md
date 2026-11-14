@@ -8,7 +8,7 @@ last_reviewed: 2026-11-14
 
 ## In one sentence
 
-**Guardrail frameworks** are libraries and models that package common checks (injection and jailbreak detection, content safety, PII, output validation, topic control) so you don't build every check from scratch; the main open-source options are NeMo Guardrails, Guardrails AI, Llama Guard and Prompt Guard, Presidio and LLM Guard.
+Guardrail frameworks are libraries and models that package common checks (injection and jailbreak detection, content safety, PII, output validation, topic control) so you don't build every check from scratch; the main open-source options are NeMo Guardrails, Guardrails AI, Llama Guard and Prompt Guard, Presidio and LLM Guard.
 
 ## Why it matters in 2027
 

@@ -8,7 +8,7 @@ last_reviewed: 2026-11-14
 
 ## In one sentence
 
-Agent-written code fails in predictable ways (invented packages, missing security checks, tests that prove nothing, destructive commands, and code nobody understands), and each **failure mode** has a simple habit that prevents it.
+Agent-written code fails in predictable ways (invented packages, missing security checks, tests that prove nothing, destructive commands, and code nobody understands), and each failure mode has a simple habit that prevents it.
 
 ## Why it matters in 2027
 

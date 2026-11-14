@@ -21,6 +21,13 @@ Where the playbook stands. Updated as work lands. Last update: **2026-11-14**.
 | 11 | 09 · Careers, glossary, README, START-HERE, ABOUT | ⬜ | |
 | 12 | Full `make check` green, then your review of the private repo | ⬜ | CI currently fails on links to pages not yet written; resolves with tasks 10 and 11 |
 
+## Waiting on you
+
+| Item | Why | One-time command |
+|---|---|---|
+| CI workflow not pushed yet | Your GitHub CLI token lacks the `workflow` scope, so GitHub refused `.github/workflows/checks.yml` (it's kept locally) | `gh auth refresh -h github.com -s workflow` |
+| Fewer permission prompts | Kiro doesn't let the agent write its own permission file | `mkdir -p ~/.kiro/settings && cp .local/kiro-permissions.yaml ~/.kiro/settings/permissions.yaml` |
+
 ## Phase 2: website and polish
 
 | # | Task | Status |

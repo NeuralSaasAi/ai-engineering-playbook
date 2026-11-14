@@ -15,6 +15,8 @@ RUN uv sync --locked --no-dev
 RUN useradd --create-home --uid 10001 app
 USER app
 
+# One worker: the demo rate limiter keeps counters in memory, so several workers would each
+# count separately (see THREAT_MODEL.md open items). Use Redis or a gateway before scaling out.
 EXPOSE 8000
 HEALTHCHECK --interval=30s --timeout=3s CMD python -c "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/healthz')"
-CMD ["/app/p5-production-capstone/.venv/bin/uvicorn", "capstone.app:app", "--host", "0.0.0.0", "--port", "8000", "--workers", "2"]
+CMD ["/app/p5-production-capstone/.venv/bin/uvicorn", "capstone.app:app", "--host", "0.0.0.0", "--port", "8000"]

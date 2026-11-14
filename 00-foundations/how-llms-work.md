@@ -45,7 +45,7 @@ Four facts follow from this design:
 
 You send: `The capital of France is`
 
-The model's top guesses for the next token might be ` Paris` (very likely), ` a` (less likely) and ` located` (less likely). It picks ` Paris`, appends it, and continues with `.` and then stops.
+The model's top guesses for the next token might be "Paris" (very likely), "a" (less likely) and "located" (less likely). It picks "Paris", appends it, and continues with `.` and then stops.
 
 Now send: `The capital of the fictional country Zubrovia is`. There is no right answer, but the model will often still produce a confident-sounding city name. Nothing inside it checks whether the fact exists.
 

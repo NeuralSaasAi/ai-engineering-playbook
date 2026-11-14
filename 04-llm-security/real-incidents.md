@@ -8,7 +8,7 @@ last_reviewed: 2026-11-14
 
 ## In one sentence
 
-These **verified incidents** show the risks in this module happening to real companies, each with a source, what failed, and the design change that would have limited the damage.
+These verified incidents show the risks in this module happening to real companies, each with a source, what failed, and the design change that would have limited the damage.
 
 ## Why it matters in 2027
 
