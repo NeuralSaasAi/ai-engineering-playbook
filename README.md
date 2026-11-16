@@ -7,7 +7,7 @@
 </p>
 
 <p align="center">
-  <a href="https://neuralsaasai.github.io/ai-engineering-playbook/"><strong>Read the website</strong></a> ·
+  <a href="https://ai-engineering.neuralsaasai.com/"><strong>Read the website</strong></a> ·
   <a href="START-HERE.md">Start here</a> ·
   <a href="#modules">Modules</a> ·
   <a href="#projects">Projects</a> ·
